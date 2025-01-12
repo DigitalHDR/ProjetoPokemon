@@ -1,44 +1,57 @@
 'use client'
 import AnimatedBar from '@/app/config/AnimatedBar'
 
-import useSpeedConfig from '@/app/config/useSpeedConfig'
-import useHeightConfig from '@/app/config/useHeightConfig '
-import useWeightConfig from '@/app/config/useWeightConfig'
-import useBaseExperience from '../config/useBaseExperience'
-import useSpeedAttackConfig from '@/app/config/useSpeedAttackConfig'
-import useSpecialDefenseConfig from '@/app/config/useSpecialDefenseConfig'
+// import useSpeedConfig from '@/app/config/useSpeedConfig'
+// import useHeightConfig from '@/app/config/useHeightConfig '
+// import useWeightConfig from '@/app/config/useWeightConfig'
+// import useBaseExperience from '../config/useBaseExperience'
+// import useSpeedAttackConfig from '@/app/config/useSpeedAttackConfig'
+// import useSpecialDefenseConfig from '@/app/config/useSpecialDefenseConfig'
 
-interface InfoDoPokemonProps {
-  item: {
-    id: number
-    name: string
-    type: string[]
-    base_experience: number
-    img: string
-    hp: number
-    defense: number
-    attack: number
-    special_attack: number
-    special_defense: number
-    speed: number
-    Height: number
-    Weight: number
-  }
+
+import pokemons from '@/app/data/apiPokemon'
+
+// interface InfoDoPokemonProps {
+//   item: {
+//     id: number
+//     name: string
+//     type: string[]
+//     base_experience: number
+//     img: string
+//     hp: number
+//     defense: number
+//     attack: number
+//     special_attack: number
+//     special_defense: number
+//     speed: number
+//     Height: number
+//     Weight: number
+//   }
+// }
+
+interface Props {
+  params: { pokemonid: string }
 }
 
-const InfoDoPokemon: React.FC<InfoDoPokemonProps> = ({ item }) => {
-  const currentSpeed = useSpeedConfig({ item })
-  const currentHeight = useHeightConfig({ item })
-  const currentWeight = useWeightConfig({ item })
-  const currentBaseExp = useBaseExperience({ item })
-  const currentSpeedAttack = useSpeedAttackConfig({ item })
-  const currentSpeedDefense = useSpecialDefenseConfig({ item })
+const InfoDoPokemon = ({ params }: Props) => {
+  const pokemonId = params.pokemonid
+
+  // Busca o Pokémon pelo id
+  const pokemon = pokemons.find((p) => p.id === Number(pokemonId))
+  console.log(pokemons)
+
+//   const currentSpeed = useSpeedConfig({ item })
+//   const currentHeight = useHeightConfig({ item })
+//   const currentWeight = useWeightConfig({ item })
+  //   const currentBaseExp = useBaseExperience({ item })
+//   const currentSpeedAttack = useSpeedAttackConfig({ item })
+//   const currentSpeedDefense = useSpecialDefenseConfig({ item })
 
   return (
     <div className="px-5 gap-10 flex flex-col mt-5">
       <div>
         <h3 className="text-3xl md:text-4xl font-black">
-          {item.name} | # {item.id}
+        {pokemon.name} | # {pokemon.id}
         </h3>
       </div>
 
@@ -47,13 +60,13 @@ const InfoDoPokemon: React.FC<InfoDoPokemonProps> = ({ item }) => {
           <div className="py-3">
             <p className="text-xl md:text-2xl font-medium">Altura:</p>
             <hr className="border-2" />
-            <span className="font-medium">{currentHeight} Cm</span>
+            {/* <span className="font-medium">{currentHeight} Cm</span> */}
           </div>
 
           <div className="py-3">
             <p className="text-xl md:text-2xl font-medium">Peso:</p>
             <hr className="border-2" />
-            <span className="font-medium text-xl">{currentWeight} kg</span>
+            {/* <span className="font-medium text-xl">{currentWeight} kg</span> */}
           </div>
         </div>
 
@@ -63,28 +76,28 @@ const InfoDoPokemon: React.FC<InfoDoPokemonProps> = ({ item }) => {
               <div className="w-10">
                 <img src="/coracao.png" alt="" />
               </div>
-              <AnimatedBar level={item.hp} />
+              <AnimatedBar level={pokemon.hp} />
             </div>
 
             <div className="flex items-center justify-center space-y-4 ">
               <div className="w-10">
                 <img src="/escudo.png" alt="" />
               </div>
-              <AnimatedBar level={item.defense} />
+              <AnimatedBar level={pokemon.defense} />
             </div>
 
             <div className="flex items-center justify-center space-y-4 ">
               <div className="w-10">
                 <img src="/espada.png" alt="" />
               </div>
-              <AnimatedBar level={item.attack} />
+              <AnimatedBar level={pokemon.attack} />
             </div>
           </div>
         </div>
 
         <div className="text-cente bg-blue-500 rounded-xl p-3 w-full  lg:w-3/5">
           <div className="flex items-center justify-center">
-            <img className="h-20" src={item.img} alt={item.name} />
+            <img className="h-20" src={pokemon.img} alt={pokemon.name} />
           </div>
           <div className="flex items-center justify-between w-full my-8 rounded-lg">
             <div>
@@ -101,7 +114,7 @@ const InfoDoPokemon: React.FC<InfoDoPokemonProps> = ({ item }) => {
           </div>
           <div className="flex justify-center items-center">
             <p className="text-xl md:text-2xl font-medium">Base Exp:</p>{' '}
-            <p className="font-medium ml-3 mt-1">{currentBaseExp}</p>
+            {/* <p className="font-medium ml-3 mt-1">{currentBaseExp}</p> */}
           </div>
         </div>
 
@@ -118,7 +131,7 @@ const InfoDoPokemon: React.FC<InfoDoPokemonProps> = ({ item }) => {
               </div>
             </div>
             <div className="font-medium w-2/3 text-right mt-1">
-              {currentSpeedAttack}
+              {/* {currentSpeedAttack} */}
             </div>
           </div>
 
@@ -134,7 +147,7 @@ const InfoDoPokemon: React.FC<InfoDoPokemonProps> = ({ item }) => {
               </div>
             </div>
             <div className="font-medium w-2/3 text-right mt-1">
-              {currentSpeedDefense}
+              {/* {currentSpeedDefense} */}
             </div>
           </div>
 
@@ -150,7 +163,7 @@ const InfoDoPokemon: React.FC<InfoDoPokemonProps> = ({ item }) => {
               </div>
             </div>
             <div className="font-medium w-2/3 text-right mt-1">
-              {currentSpeed}
+              {/* {currentSpeed} */}
             </div>
           </div>
         </div>
