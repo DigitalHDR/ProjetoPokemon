@@ -1,57 +1,64 @@
 'use client'
+import { use } from 'react'
+
 import AnimatedBar from '@/app/config/AnimatedBar'
-
-// import useSpeedConfig from '@/app/config/useSpeedConfig'
-// import useHeightConfig from '@/app/config/useHeightConfig '
-// import useWeightConfig from '@/app/config/useWeightConfig'
-// import useBaseExperience from '../config/useBaseExperience'
-// import useSpeedAttackConfig from '@/app/config/useSpeedAttackConfig'
-// import useSpecialDefenseConfig from '@/app/config/useSpecialDefenseConfig'
-
-
 import pokemons from '@/app/data/apiPokemon'
 
-// interface InfoDoPokemonProps {
-//   item: {
-//     id: number
-//     name: string
-//     type: string[]
-//     base_experience: number
-//     img: string
-//     hp: number
-//     defense: number
-//     attack: number
-//     special_attack: number
-//     special_defense: number
-//     speed: number
-//     Height: number
-//     Weight: number
-//   }
-// }
+interface UsableParams {
+  pokemonid: string
+}
 
 interface Props {
-  params: { pokemonid: string }
+  params: Promise<UsableParams>
 }
 
 const InfoDoPokemon = ({ params }: Props) => {
-  const pokemonId = params.pokemonid
+  // Desembrulhando a promise de params corretamente
+  const unwrappedParams = use(params) as UsableParams
+  const pokemonId = unwrappedParams.pokemonid
 
   // Busca o Pokémon pelo id
   const pokemon = pokemons.find((p) => p.id === Number(pokemonId))
-  console.log(pokemons)
 
-//   const currentSpeed = useSpeedConfig({ item })
-//   const currentHeight = useHeightConfig({ item })
-//   const currentWeight = useWeightConfig({ item })
-  //   const currentBaseExp = useBaseExperience({ item })
-//   const currentSpeedAttack = useSpeedAttackConfig({ item })
-//   const currentSpeedDefense = useSpecialDefenseConfig({ item })
+  // Se o Pokémon não for encontrado, renderize uma mensagem
+  // Serve para tirar o erro de cada vez que usa {pokemon}
+  if (!pokemon) {
+    return <div>Pokémon não encontrado</div>
+  }
+
+  // Mapeamento de tipos para imagens
+  const typeToImageMap: Record<string, string> = {
+    Fire: '/Fire.png',
+    Poison: '/Poison.png',
+    Bug: '/Bug.png',
+    Grass: '/Grass.png',
+    Dark: '/Dark.png',
+    Dragon: '/Dragon.png',
+    Electric: '/Electric.png',
+    Fairy: '/Fairy.png',
+    Fighting: '/Fighting.png',
+    Flying: '/Flying.png',
+    Ghost: '/Ghost.png',
+    Ground: '/Ground.png',
+    Ice: '/Ice.png',
+    Normal: '/Normal.png',
+    Psychic: '/Psychic.png',
+    Rock: '/Rock.png',
+    Steel: '/Steel.png',
+    Water: '/Water.png',
+    // Adicione outros tipos conforme necessário
+  }
+
+  // Função para pegar a imagem de acordo com o tipo
+  const getImageForType = (type: string): string => {
+    return typeToImageMap[type] || '/default.png' // Retorna a imagem correspondente ou a imagem padrão
+  }
 
   return (
     <div className="px-5 gap-10 flex flex-col mt-5">
       <div>
         <h3 className="text-3xl md:text-4xl font-black">
-        {pokemon.name} | # {pokemon.id}
+          {pokemon.name} | # {pokemon.id}
         </h3>
       </div>
 
@@ -70,6 +77,7 @@ const InfoDoPokemon = ({ params }: Props) => {
           </div>
         </div>
 
+        {/* ANIMAÇÃO COM BARRA */}
         <div className="w-full xl:w-3/5 lg:w-3/5">
           <div className="">
             <div className="flex w-full items-center justify-center space-y-4 ">
@@ -95,9 +103,10 @@ const InfoDoPokemon = ({ params }: Props) => {
           </div>
         </div>
 
+        {/* IMAGEM DO POKEMON  */}
         <div className="text-cente bg-blue-500 rounded-xl p-3 w-full  lg:w-3/5">
           <div className="flex items-center justify-center">
-            <img className="h-20" src={pokemon.img} alt={pokemon.name} />
+            <img className="h-32" src={pokemon.img} alt={pokemon.name} />
           </div>
           <div className="flex items-center justify-between w-full my-8 rounded-lg">
             <div>
@@ -118,6 +127,7 @@ const InfoDoPokemon = ({ params }: Props) => {
           </div>
         </div>
 
+        {/* STATUS SPECIAIS */}
         <div className="w-full xl:w-2/5 lg:w-3/5">
           <div className="flex items-center justify-between">
             <div className="flex">
@@ -168,27 +178,38 @@ const InfoDoPokemon = ({ params }: Props) => {
           </div>
         </div>
 
+        {/* TIPO DO POKEMON */}
         <div className="w-full xl:w-2/5 lg:w-3/5">
           <p className="text-xl md:text-2xl font-medium text-center">Tipo</p>
           <hr className="border-2" />
           <div className="flex justify-between xl:justify-normal xl:flex-col flex-row mt-5 gap-10 xl:gap-5">
             <div className="flex items-center md:gap-5">
               <div className="flex justify-center w-full md:justify-end">
-                <img width={35} src="./Grass.png" alt="tipo" />
+                <img
+                  width={35}
+                  src={getImageForType(pokemon.type[0])}
+                  alt="tipo"
+                />
               </div>
               <div className="flex items-center justify-start w-full">
-                <span className="font-medium ml-3">Bug</span>
+                <span className="font-medium ml-3">{pokemon.type[0]}</span>
               </div>
             </div>
 
-            <div className="flex items-center md:gap-5">
-              <div className="flex justify-center w-full md:justify-end">
-                <img width={35} src="./Poison.png" alt="tipo" />
+            {pokemon.type.length > 1 && (
+              <div className="flex items-center md:gap-5">
+                <div className="flex justify-center w-full md:justify-end">
+                  <img
+                    width={35}
+                    src={getImageForType(pokemon.type[1])}
+                    alt="tipo"
+                  />
+                </div>
+                <div className="flex items-center justify-start w-full">
+                  <span className="font-medium ml-3">{pokemon.type[1]}</span>
+                </div>
               </div>
-              <div className="flex items-center justify-start w-full">
-                <span className="font-medium ml-3">Dark</span>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
