@@ -65,9 +65,38 @@ const InfoDoPokemon = ({ params }: Props) => {
           </h3>
         </div>
 
-        <div className="flex flex-col  gap-10 items-center xl:flex-row my-3">
+        <div
+          style={{ backgroundColor: pokemon.typeColor[0] }}
+          className="flex flex-col gap-10 mt-20  items-center my-3   p-5  relative rounded-lg shadow-xl mb-10"
+        >
+          {/* IMAGEM DO POKEMON  */}
+          <div className="flex justify-center items-center ">
+            <div className="text-cente rounded-xl p-3 bg-white border border-cyan-600 absolute -top-20 shadow-xl">
+              <div className="flex items-center justify-center">
+                <img src={pokemon.img} alt={pokemon.name} />
+              </div>
+              <div className="flex items-center justify-between w-full my-8 rounded-lg">
+                <div>
+                  <hr className="border-2 w-28" />
+                </div>
+                <div className="w-8">
+                  <a href="https://www.flaticon.com" title="Pokebola">
+                    <img src="/pokebola.png" alt="Pokebola" />
+                  </a>
+                </div>
+                <div>
+                  <hr className="border-2 w-28" />
+                </div>
+              </div>
+              <div className="flex justify-center items-center text-xl">
+                <p className="md:text-2xl">Base Exp:</p>{' '}
+                <p className="ml-3 mt-1">{pokemon.base_experience}</p>
+              </div>
+            </div>
+          </div>
+
           {/* ALTURA E PESO */}
-          <div className=" flex justify-between w-full lg:w-3/5  xl:w-2/5 text-xl xl:flex-col ">
+          <div className=" flex justify-between w-full lg:w-3/5 xl:w-3/5 text-xl">
             <div className="py-3">
               <p className="text-xl md:text-2xl font-medium">Altura:</p>
               <hr className="border-2" />
@@ -107,35 +136,8 @@ const InfoDoPokemon = ({ params }: Props) => {
             </div>
           </div>
 
-          {/* IMAGEM DO POKEMON  */}
-          <div
-            style={{ backgroundColor: pokemon.typeColor[0] }}
-            className={`text-cente rounded-xl p-3 w-full  lg:w-3/5`}
-          >
-            <div className="flex items-center justify-center">
-              <img src={pokemon.img} alt={pokemon.name} />
-            </div>
-            <div className="flex items-center justify-between w-full my-8 rounded-lg">
-              <div>
-                <hr className="border-2 w-28" />
-              </div>
-              <div className="w-8">
-                <a href="https://www.flaticon.com" title="Pokebola">
-                  <img src="/pokebola.png" alt="Pokebola" />
-                </a>
-              </div>
-              <div>
-                <hr className="border-2 w-28" />
-              </div>
-            </div>
-            <div className="flex justify-center items-center text-xl">
-              <p className="md:text-2xl">Base Exp:</p>{' '}
-              <p className="ml-3 mt-1">{pokemon.base_experience}</p>
-            </div>
-          </div>
-
           {/* STATUS SPECIAIS */}
-          <div className="w-full xl:w-2/5 lg:w-3/5 text-xl">
+          <div className="w-full xl:w-3/5 lg:w-3/5 text-xl">
             <div className="flex items-center justify-between">
               <div className="flex">
                 <div className="w-9 xl:w-8 rounded-full mr-5">
@@ -186,13 +188,14 @@ const InfoDoPokemon = ({ params }: Props) => {
           </div>
 
           {/* TIPO DO POKEMON */}
-          <div className="w-full xl:w-2/5 lg:w-3/5">
+          <div className="w-full xl:w-3/5 lg:w-3/5">
             <p className="text-xl md:text-2xl font-medium text-center">Tipo</p>
             <hr className="border-2" />
-            <div className="flex justify-between xl:justify-normal xl:flex-col flex-row mt-5 gap-10 xl:gap-5">
+            <div className="flex justify-between flex-row mt-5 gap-10 xl:gap-5">
               <div className="flex items-center md:gap-5">
                 <div className="flex justify-center w-full md:justify-end">
                   <img
+                    className="bg-blue-gray-50 rounded-full"
                     width={35}
                     src={getImageForType(pokemon.type[0])}
                     alt="tipo"
@@ -209,6 +212,7 @@ const InfoDoPokemon = ({ params }: Props) => {
                 <div className="flex items-center md:gap-5">
                   <div className="flex justify-center w-full md:justify-end">
                     <img
+                      className="bg-blue-gray-50 rounded-full"
                       width={35}
                       src={getImageForType(pokemon.type[1])}
                       alt="tipo"
