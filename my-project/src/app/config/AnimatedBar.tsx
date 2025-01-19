@@ -24,7 +24,7 @@ const AnimatedBar: React.FC<AnimatedBarProps> = ({ level }) => {
     <div className="w-full max-w-md mx-auto">
       <div className="h-3.5 bg-gray-200 rounded-full overflow-hidden ">
         <div
-          className={`h-full rounded-full ${
+          className={`h-full rounded-full  ${
             progress > 70
               ? 'bg-green-500'
               : progress > 40
@@ -37,7 +37,7 @@ const AnimatedBar: React.FC<AnimatedBarProps> = ({ level }) => {
           }}
         />
       </div>
-      <p className=" text-center relative bottom-4 text-sm font-medium">
+      <p className=" text-center relative bottom-5 text-xl font-medium">
         {progress}
       </p>
     </div>

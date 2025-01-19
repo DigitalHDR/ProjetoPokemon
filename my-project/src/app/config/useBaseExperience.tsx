@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 
-const currentBaseExp = ({ item }: any) => {
+const useBaseExperience = ({ item }: any) => {
   const [currentBaseExp, setCurrentBaseExp] = useState(0)
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const currentBaseExp = ({ item }: any) => {
     }
   }, [item])
 
-  return
+  return currentBaseExp
 }
 
-export default currentBaseExp
+export default useBaseExperience

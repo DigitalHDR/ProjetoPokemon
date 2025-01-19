@@ -1,8 +1,8 @@
 'use client'
 import { use } from 'react'
-
 import AnimatedBar from '@/app/config/AnimatedBar'
 import pokemons from '@/app/data/apiPokemon'
+import useHeightConfig from '@/app/config/useHeightConfig '
 
 interface UsableParams {
   pokemonid: string
@@ -54,6 +54,8 @@ const InfoDoPokemon = ({ params }: Props) => {
     return typeToImageMap[type] || '/default.png' // Retorna a imagem correspondente ou a imagem padrão
   }
 
+  const currentHeight = useHeightConfig({})
+
   return (
     <div className="px-5 gap-10 flex flex-col mt-5">
       <div>
@@ -67,13 +69,13 @@ const InfoDoPokemon = ({ params }: Props) => {
           <div className="py-3">
             <p className="text-xl md:text-2xl font-medium">Altura:</p>
             <hr className="border-2" />
-            {/* <span className="font-medium">{currentHeight} Cm</span> */}
+            <span>{pokemon.Height} Cm</span>
           </div>
 
           <div className="py-3">
             <p className="text-xl md:text-2xl font-medium">Peso:</p>
             <hr className="border-2" />
-            {/* <span className="font-medium text-xl">{currentWeight} kg</span> */}
+            <span>{pokemon.Weight} kg</span>
           </div>
         </div>
 
@@ -106,7 +108,7 @@ const InfoDoPokemon = ({ params }: Props) => {
         {/* IMAGEM DO POKEMON  */}
         <div className="text-cente bg-blue-500 rounded-xl p-3 w-full  lg:w-3/5">
           <div className="flex items-center justify-center">
-            <img className="h-32" src={pokemon.img} alt={pokemon.name} />
+            <img src={pokemon.img} alt={pokemon.name} />
           </div>
           <div className="flex items-center justify-between w-full my-8 rounded-lg">
             <div>
@@ -123,12 +125,12 @@ const InfoDoPokemon = ({ params }: Props) => {
           </div>
           <div className="flex justify-center items-center">
             <p className="text-xl md:text-2xl font-medium">Base Exp:</p>{' '}
-            {/* <p className="font-medium ml-3 mt-1">{currentBaseExp}</p> */}
+            <p className="font-medium ml-3 mt-1">{pokemon.base_experience}</p>
           </div>
         </div>
 
         {/* STATUS SPECIAIS */}
-        <div className="w-full xl:w-2/5 lg:w-3/5">
+        <div className="w-full xl:w-2/5 lg:w-3/5 text-xl">
           <div className="flex items-center justify-between">
             <div className="flex">
               <div className="w-9 xl:w-8 rounded-full mr-5">
@@ -136,12 +138,12 @@ const InfoDoPokemon = ({ params }: Props) => {
                   <img src="/special attack.png" alt="Pokebola" />
                 </a>
               </div>
-              <div className="text-xl md:text-2xl font-medium text-left whitespace-nowrap mr-3">
+              <div className="md:text-2xl font-medium text-left whitespace-nowrap mr-3">
                 Special Attack
               </div>
             </div>
             <div className="font-medium w-2/3 text-right mt-1">
-              {/* {currentSpeedAttack} */}
+              {pokemon.special_attack}
             </div>
           </div>
 
@@ -152,12 +154,12 @@ const InfoDoPokemon = ({ params }: Props) => {
                   <img src="/special defense.png" alt="Pokebola" />
                 </a>
               </div>
-              <div className="text-xl md:text-2xl font-medium text-left whitespace-nowrap mr-3">
+              <div className="md:text-2xl font-medium text-left whitespace-nowrap mr-3">
                 Special Defesa
               </div>
             </div>
             <div className="font-medium w-2/3 text-right mt-1">
-              {/* {currentSpeedDefense} */}
+              {pokemon.special_defense}
             </div>
           </div>
 
@@ -168,12 +170,12 @@ const InfoDoPokemon = ({ params }: Props) => {
                   <img src="/speed.png" alt="Pokebola" />
                 </a>
               </div>
-              <div className="text-xl md:text-2xl font-medium text-left whitespace-nowrap mr-3">
+              <div className="md:text-2xl font-medium text-left whitespace-nowrap mr-3">
                 Speed
               </div>
             </div>
             <div className="font-medium w-2/3 text-right mt-1">
-              {/* {currentSpeed} */}
+              {pokemon.speed}
             </div>
           </div>
         </div>
@@ -192,7 +194,7 @@ const InfoDoPokemon = ({ params }: Props) => {
                 />
               </div>
               <div className="flex items-center justify-start w-full">
-                <span className="font-medium ml-3">{pokemon.type[0]}</span>
+                <span className="font-medium text-xl ml-3">{pokemon.type[0]}</span>
               </div>
             </div>
 
@@ -206,7 +208,7 @@ const InfoDoPokemon = ({ params }: Props) => {
                   />
                 </div>
                 <div className="flex items-center justify-start w-full">
-                  <span className="font-medium ml-3">{pokemon.type[1]}</span>
+                  <span className="font-medium text-xl ml-3">{pokemon.type[1]}</span>
                 </div>
               </div>
             )}
