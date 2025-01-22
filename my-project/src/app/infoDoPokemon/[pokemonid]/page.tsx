@@ -71,7 +71,7 @@ const InfoDoPokemon = ({ params }: Props) => {
         >
           {/* IMAGEM DO POKEMON  */}
           <div className="flex justify-center items-center ">
-            <div className="text-cente rounded-xl p-3 bg-white border border-cyan-600 absolute -top-20 shadow-xl">
+            <div className="text-cente rounded-xl p-3 bg-white border border-cyan-600 sm:absolute -top-20 shadow-2xl">
               <div className="flex items-center justify-center">
                 <img src={pokemon.img} alt={pokemon.name} />
               </div>
