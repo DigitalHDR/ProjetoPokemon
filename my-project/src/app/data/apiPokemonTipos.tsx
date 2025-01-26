@@ -13,7 +13,7 @@ const pokemonTypes: Tipos[] = [
   {
     id: 2,
     type: 'Fire',
-    color: '#EE8130',
+    color: '#FF4500',
   },
   {
     id: 3,

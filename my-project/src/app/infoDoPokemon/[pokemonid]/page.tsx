@@ -70,14 +70,35 @@ const InfoDoPokemon = ({ params }: Props) => {
           className="flex flex-col gap-10 mt-20  items-center my-3   p-5  relative rounded-lg shadow-xl mb-10"
         >
           {/* IMAGEM DO POKEMON  */}
-          <div className="flex justify-center items-center ">
-            <div className="text-cente rounded-xl p-3 bg-white border border-cyan-600 sm:absolute -top-20 shadow-2xl">
-              <div className="flex items-center justify-center">
-                <img src={pokemon.img} alt={pokemon.name} />
+          <div className="flex justify-center   items-center ">
+            <div
+              style={{ border: pokemon.typeColor[0] }}
+              className="text-cente z-10 overflow-hidden rounded-xl  bg-white border  absolute -top-20 shadow-2xl"
+            >
+              <div className="h-[87px] flex items-center justify-center">
+                <div className="flex relative top-4 justify-center items-center">
+                  <img src={pokemon.img} alt={pokemon.name} />
+                </div>
+                <div
+                  style={{ backgroundColor: pokemon.typeColor[0] }}
+                  className="w-60 h-60 rounded-full -z-10 absolute"
+                ></div>
+                <div
+                  style={{ backgroundColor: pokemon.typeColor[0] }}
+                  className="w-60 h-60 rotate-45 bottom-[91px] -z-10 absolute"
+                ></div>
+                <div
+                  style={{ backgroundColor: pokemon.typeColor[0] }}
+                  className="w-60 h-60 rotate-[65deg]  bottom-[87px] -z-10 absolute"
+                ></div>
+                <div
+                  style={{ backgroundColor: pokemon.typeColor[0] }}
+                  className="w-60 h-60 rotate-[25deg]  bottom-[87px] -z-10 absolute"
+                ></div>
               </div>
               <div className="flex items-center justify-between w-full my-8 rounded-lg">
                 <div>
-                  <hr className="border-2 w-28" />
+                  <hr className="border-1 w-28" />
                 </div>
                 <div className="w-8">
                   <a href="https://www.flaticon.com" title="Pokebola">
@@ -85,7 +106,7 @@ const InfoDoPokemon = ({ params }: Props) => {
                   </a>
                 </div>
                 <div>
-                  <hr className="border-2 w-28" />
+                  <hr className="border-1 w-28" />
                 </div>
               </div>
               <div className="flex justify-center items-center text-xl">
@@ -96,7 +117,7 @@ const InfoDoPokemon = ({ params }: Props) => {
           </div>
 
           {/* ALTURA E PESO */}
-          <div className=" flex justify-between w-full lg:w-3/5 xl:w-3/5 text-xl">
+          <div className=" flex justify-between mt-20 sm:mt-0 w-full lg:w-3/5 xl:w-3/5 text-xl">
             <div className="py-3">
               <p className="text-xl md:text-2xl font-medium">Altura:</p>
               <hr className="border-2" />
