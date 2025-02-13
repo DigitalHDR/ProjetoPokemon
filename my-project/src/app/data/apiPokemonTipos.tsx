@@ -8,7 +8,7 @@ const pokemonTypes: Tipos[] = [
   {
     id: 1,
     type: 'Normal',
-    color: '#A8A77A',
+    color: '#707055',
   },
   {
     id: 2,
@@ -48,7 +48,7 @@ const pokemonTypes: Tipos[] = [
   {
     id: 9,
     type: 'Ground',
-    color: '#E2BF65',
+    color: '#e2a065',
   },
   {
     id: 10,
@@ -68,7 +68,7 @@ const pokemonTypes: Tipos[] = [
   {
     id: 13,
     type: 'Rock',
-    color: '#B6A136',
+    color: '#8a7a2c',
   },
   {
     id: 14,

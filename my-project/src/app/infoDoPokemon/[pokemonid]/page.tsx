@@ -60,11 +60,11 @@ const InfoDoPokemon = ({ params }: Props) => {
     <section className="flex justify-center items-center">
       <div className="px-5 gap-10 flex flex-col mt-5 container">
         <div>
-          <h3 className="text-3xl md:text-4xl font-black">
-            {pokemon.name} | # {pokemon.id}
-          </h3>
+          
+            <h3 className="text-3xl md:text-4xl font-black ">
+              {pokemon.name} | # {pokemon.id}
+            </h3>
         </div>
-
         <div
           style={{ backgroundColor: pokemon.typeColor[0] }}
           className="flex flex-col gap-10 mt-20  items-center my-3   p-5  relative rounded-lg shadow-xl mb-10"
